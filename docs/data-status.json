@@ -1,0 +1,41 @@
+{
+  "generated_at": "2026-11-14T06:58:54+00:00",
+  "site_count": 9,
+  "sites_with_real_rgb": 7,
+  "real_rgb_scene_count": 14,
+  "sites_with_osm": 3,
+  "sites_with_climate": 7,
+  "errors_by_site": {
+    "W01": [
+      "S1 HTTPSConnectionPool(host='overpass.kumi.systems', port=443): Read timed out. (re",
+      "S1 502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter?d"
+    ],
+    "B06": [
+      "S1 HTTPSConnectionPool(host='overpass.kumi.systems', port=443): Read timed out. (re",
+      "S1 HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read tim"
+    ],
+    "B04N": [
+      "S1 HTTPSConnectionPool(host='overpass.kumi.systems', port=443): Read timed out. (re",
+      "S1 HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read tim"
+    ],
+    "B07": [
+      "Location not resolved; no AOI generated"
+    ],
+    "B08": [
+      "S1 HTTPSConnectionPool(host='overpass.kumi.systems', port=443): Read timed out. (re"
+    ],
+    "B09": [
+      "S1 HTTPSConnectionPool(host='overpass.kumi.systems', port=443): Read timed out. (re",
+      "S1 502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter?d"
+    ],
+    "B10": [
+      "S1 HTTPSConnectionPool(host='overpass.kumi.systems', port=443): Read timed out. (re"
+    ],
+    "B12": [
+      "Location not resolved; no AOI generated"
+    ],
+    "B05": [
+      "S1 HTTPSConnectionPool(host='overpass.kumi.systems', port=443): Read timed out. (re"
+    ]
+  }
+}
