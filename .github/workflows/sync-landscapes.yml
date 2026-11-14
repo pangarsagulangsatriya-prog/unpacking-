@@ -8,6 +8,9 @@ on:
       - ".github/workflows/sync-landscapes.yml"
   schedule:
     - cron: "0 2 * * 1"
+concurrency:
+  group: landscape-acquisition
+  cancel-in-progress: false
 permissions:
   contents: write
 jobs:
@@ -22,14 +25,17 @@ jobs:
       - name: Install free scientific libraries
         run: pip install requests rasterio numpy pillow
       - name: Download public landscape data and build HTML
-        run: python sync_landscapes.py
+        run: |
+          python sync_landscapes.py
+          python embed_snapshot.py
       - name: Commit acquired public data and atlas
         run: |
           git config user.name "unpacking-data-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add docs/index.html docs/data-status.json docs/public-data.json
+          git add docs/
           if ! git diff --cached --quiet; then
             git commit -m "Update public landscape datasets and satellite previews"
+            git pull --rebase -X theirs origin main
             git push
           fi
       - name: Upload run report

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """UNPACKING: cloud acquisition of public datasets; public-safe output only.
-GitHub Actions runs this script and commits docs/index.html and data manifests.
+GitHub Actions runs this script and commits docs/satellite-report.html and data manifests.
 No user screenshots, private video, or unpublished files are uploaded.
 """
 import base64, datetime as dt, html, io, json, os, time
@@ -64,7 +64,7 @@ def stac(scene,year,bbox):
     r=get(url,params={"collections":"sentinel-2-c1-l2a","bbox":",".join(map(str,bbox)),"datetime":start+"/"+end,"limit":100})
     items=r.json().get("features",[])
     items=[i for i in items if i.get("assets")]
-    items.sort(key=lambda i:float(i.get("properties",{}).get("eo:cloud_cover") or 100))
+    items.sort(key=lambda i:float(i.get("properties",{}).get("eo:cloud_cover",100)))
     return items[:4]
 def read_rgb(scene,bbox):
     import numpy as np
@@ -128,6 +128,7 @@ def acquire(result):
                     data,wh=read_rgb(scene,bbox)
                     result["scenes"].append({"year":year,"datetime":scene["properties"].get("datetime"),"scene_id":scene["id"],
                         "cloud_cover_scene_pct":scene["properties"].get("eo:cloud_cover"),"rgb":data,"dimensions":wh,
+                        "source_url":scene.get("assets",{}).get("visual",{}).get("href"),
                         "type":"RGB visual from public Sentinel-2 COG","status":"pixels_downloaded"})
                     break
                 except Exception as exc: result["errors"].append(f"S2 COG {year}: "+str(exc)[:100])
@@ -138,6 +139,7 @@ def acquire(result):
     try:
         r=get("https://api.panoramax.xyz/api/search",params={"bbox":",".join(map(str,bbox)),"limit":20})
         features=r.json().get("features",[])
+        result["street_catalog"]=features
         result["sources"]["S3"]={"status":"catalogued","count":len(features),"provider":"Panoramax, not Mapillary"}
     except Exception as exc:result["errors"].append("S3 "+str(exc)[:100])
     # S4 monthly climate context: not local flooding measurement
@@ -205,5 +207,5 @@ pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:11px;background:#f5f7f
 page+=f'<b>{len(results)} lokasi</b><b>{status["sites_with_real_rgb"]} lokasi dengan raster</b><b>{status["real_rgb_scene_count"]} scene RGB</b><b>{status["sites_with_osm"]} lokasi OSM</b></div>'
 page+="".join(cards)
 page+=f'<p>Pengambilan terakhir: {NOW}. Tidak ada raster atau nilai ekologis sintetis.</p></main></html>'
-with open("docs/index.html","w",encoding="utf8") as f:f.write(page)
+with open("docs/satellite-report.html","w",encoding="utf8") as f:f.write(page)
 print("FINISHED",json.dumps(status,ensure_ascii=False),flush=True)
