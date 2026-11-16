@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-11-14T06:58:54+00:00",
+  "generated_at": "2026-11-16T08:43:47+00:00",
   "site_count": 9,
   "sites_with_real_rgb": 7,
   "real_rgb_scene_count": 14,
-  "sites_with_osm": 3,
+  "sites_with_osm": 0,
   "sites_with_climate": 7,
   "errors_by_site": {
     "W01": [
       "S1 HTTPSConnectionPool(host='overpass.kumi.systems', port=443): Read timed out. (re",
-      "S1 502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter?d"
+      "S1 HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read tim"
     ],
     "B06": [
       "S1 HTTPSConnectionPool(host='overpass.kumi.systems', port=443): Read timed out. (re",
@@ -22,20 +22,23 @@
       "Location not resolved; no AOI generated"
     ],
     "B08": [
-      "S1 HTTPSConnectionPool(host='overpass.kumi.systems', port=443): Read timed out. (re"
+      "S1 HTTPSConnectionPool(host='overpass.kumi.systems', port=443): Read timed out. (re",
+      "S1 HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read tim"
     ],
     "B09": [
       "S1 HTTPSConnectionPool(host='overpass.kumi.systems', port=443): Read timed out. (re",
-      "S1 502 Server Error: Bad Gateway for url: https://overpass-api.de/api/interpreter?d"
+      "S1 HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read tim"
     ],
     "B10": [
-      "S1 HTTPSConnectionPool(host='overpass.kumi.systems', port=443): Read timed out. (re"
+      "S1 HTTPSConnectionPool(host='overpass.kumi.systems', port=443): Read timed out. (re",
+      "S1 HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read tim"
     ],
     "B12": [
       "Location not resolved; no AOI generated"
     ],
     "B05": [
-      "S1 HTTPSConnectionPool(host='overpass.kumi.systems', port=443): Read timed out. (re"
+      "S1 HTTPSConnectionPool(host='overpass.kumi.systems', port=443): Read timed out. (re",
+      "S1 HTTPSConnectionPool(host='overpass-api.de', port=443): Read timed out. (read tim"
     ]
   }
 }
